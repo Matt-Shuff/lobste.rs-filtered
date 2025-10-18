@@ -1,0 +1,17 @@
+{
+	"name": "lobsters-custom-rss",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"start": "wrangler dev",
+		"test": "vitest",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-pool-workers": "^0.8.19",
+		"prettier": "^3.0.0",
+		"vitest": "~3.2.0",
+		"wrangler": "^4.42.2"
+	}
+}

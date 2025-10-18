@@ -1,0 +1,23 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "lobsters-custom-rss",
+	"main": "src/index.js",
+	"compatibility_date": "2025-10-11",
+	"observability": {
+		"enabled": true,
+	},
+	"kv_namespaces": [
+		{
+			"binding": "RSS_CACHE",
+			"id": "cbd1224d58c744f1a98175c5a70bbb10",
+			"preview_id": "9ec1f708c51b482389b57b1cbfab1d6b",
+		},
+	],
+	"triggers": {
+		"crons": ["*/25 * * * *"],
+	}
+}
