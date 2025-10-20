@@ -43,15 +43,15 @@ class RSSProcessor {
 	}
 
 	generateRssItem(article) {
-		return `<item>
-	<title>${this.escapeXml(article.title)}</title>
-	<author>${this.escapeXml(article.author)}</author>
-	<link>${this.escapeXml(article.link)}</link>
-	<comments>${this.escapeXml(article.comments)}</comments>
-	<wfw:commentRss>${this.escapeXml(article.comments)}</wfw:commentRss>
-	<guid isPermaLink="false">${this.escapeXml(article.guid)}</guid>
-	<pubDate>${article.published}</pubDate>
-</item>`;
+		return `	<item>
+		<title>${this.escapeXml(article.title)}</title>
+		<author>${this.escapeXml(article.author)}</author>
+		<link>${this.escapeXml(article.link)}</link>
+		<comments>${this.escapeXml(article.comments)}</comments>
+		<wfw:commentRss>${this.escapeXml(article.comments)}</wfw:commentRss>
+		<guid isPermaLink="false">${this.escapeXml(article.guid)}</guid>
+		<pubDate>${article.published}</pubDate>
+	</item>`;
 	}
 
 	writeArticlesFeed(articles) {
@@ -63,14 +63,15 @@ class RSSProcessor {
 			`[FILTERING] ${articles.length} total articles, ${filteredAndSorted.length} meet minimum score of ${this.config.minimumScore}`,
 		);
 
-		const rssItems = filteredAndSorted.map((article) => this.generateRssItem(article)).join('');
+		const rssItems = filteredAndSorted.map((article) => this.generateRssItem(article)).join('\n');
 
 		return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
 	<channel>
 		<title>Lobsters</title>
 		<link>https://lobste.rs</link>
-		<description></description>${rssItems}
+		<description></description>
+${rssItems}
 	</channel>
 </rss>`;
 	}
