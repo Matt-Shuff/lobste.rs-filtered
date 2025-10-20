@@ -203,6 +203,12 @@ export default {
 			});
 		}
 
+		// Handle index.xml endpoint
+		if (url.pathname === '/index.xml') {
+			// Redirect to root (same content, no cache busting)
+			return Response.redirect(`${url.protocol}//${url.host}/`, 302);
+		}
+
 		try {
 			// Skip cache if force refresh is requested
 			if (!forceRefresh) {

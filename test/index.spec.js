@@ -83,4 +83,14 @@ describe('Lobsters RSS worker', () => {
 		expect(responseText).toContain('<comments>https://lobste.rs/s/test/test-article</comments>');
 		expect(responseText).toContain('<wfw:commentRss>https://lobste.rs/s/test/test-article</wfw:commentRss>');
 	}, 10000);
+
+	it('redirects /index.xml to root', async () => {
+		const request = new Request('http://example.com/index.xml');
+		const ctx = createExecutionContext();
+		const response = await worker.fetch(request, env, ctx);
+		await waitOnExecutionContext(ctx);
+
+		expect(response.status).toBe(302);
+		expect(response.headers.get('Location')).toBe('http://example.com/');
+	}, 10000);
 });
