@@ -21,6 +21,9 @@
 	],
 	"triggers": {
 		"crons": ["*/25 * * * *"],
-	}
+	},
+	"routes": [
+		{ "pattern": "<YOUR_CUSTOM_DOMAIN>", "custom_domain": true }
+	]
 }
 
